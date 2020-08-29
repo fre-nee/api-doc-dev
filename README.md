@@ -6,9 +6,9 @@
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
 
-<p align="center"><img src="https://raw.githubusercontent.com/slatedocs/img/main/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/sean-hill/slate-dracula/master/source/images/slate-dracula.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://slatedocs.github.io/slate">slatedocs.github.io/slate</a>.</em></p>
+<p align="center"><em>The example above was created with Slate with a Dracula Theme twist. Check it out at <a href="https://sean-hill.github.io/slate-dracula">sean-hill.github.io/slate-dracula</a>.</em></p>
 
 Features
 ------------

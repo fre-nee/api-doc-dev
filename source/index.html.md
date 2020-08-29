@@ -1,7 +1,7 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs:
   - shell
   - ruby
   - python
@@ -19,7 +19,7 @@ search: true
 code_clipboard: true
 ---
 
-# Introduction
+# Exactt API Docs
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
