@@ -1,14 +1,10 @@
 ---
 title: API Reference
 
-language_tabs:
-  - shell
-  - ruby
-  - python
-  - javascript
+language_tabs: # must be one of https://git.io/vQNgJ
+  - javascript (React)
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,223 +15,191 @@ search: true
 code_clipboard: true
 ---
 
-# Exactt API Docs
+# Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Exactt API! This is documentation about various cloud code fucntions which can consumed to make exactt client app work. For more information about code checkout <a href=' https://docs.parseplatform.org/cloudcode/guide/#cloud-functions'>Parse Server Cloud Code</a>
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Document is authored by Freddy Thobhani <thobhani.freddy@gmail.com> and it it currently maintained by
+Freddy Thobhani and Neel Patel <hello@ineelpatel.com>. Feel free to contact Freddy or Neel if something is not clear or you see any mistake.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+For any cloud code function request create a [issue](https://github.com/fre-nee/exactt-backend/issues)
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> To configure Parse on client side:
 
 ```javascript
-const kittn = require('kittn');
+import Parse from 'parse'
 
-let api = kittn.authorize('meowmeowmeow');
+Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
+Parse.serverURL = 'http://YOUR_PARSE_SERVER:1337/api'
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `YOUR_APP_ID` with your APP key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+> Make sure to replace `YOUR_JAVASCRIPT_KEY` with your JAVASCRIPT key.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+> Make sure to replace `YOUR_PARSE_SERVER` with your API SERVER url.
 
-`Authorization: meowmeowmeow`
+To see detailed docs about configuring Parse on client side for consuing exactt backend check [Parse JS Guide](https://docs.parseplatform.org/js/guide/).
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
-# Kittens
+# Organization
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+## Get Organization Status
 
 ```javascript
-const kittn = require('kittn');
+import Parse from 'parse'
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+const res = await Parse.Cloud.run("getOrganizationStatus");
+```
+
+> The above command returns NUMBER as a status which can 0,1 or 2:
+
+```number
+1
+```
+
+### cloud function
+
+`getOrganizationStatus`
+
+This cloud function returns the status of organization. 
+
+Status is a number which can be 0, 1 or 2. 
+
+0 -> There is no Admin User or Organization information. 
+
+1 -> There is a Admin user but no Organization information.
+
+2 -> There is a Admin user andOrganization information (Organization onboarding successful).
+
+
+### Parameters
+
+NOT REQUIRED
+
+
+## Get Organization
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("getOrganizationStatus");
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+{
+  "address": {
+      "line1": "201-202, Sahaj Arcade, Above Vimal Hospital",
+      "line2": "Opposite Lincoln Healthcare, Near Sola Gam, Science City Road",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "zip": "380060"
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+  "bank": {
+      "name": "Kotak",
+      "acc_name": "Hitech",
+      "acc_number": "1234567890",
+      "branch": "Maninagar",
+      "ifsc": "KKBK00091"
+  },
+  "contact": {
+      "name": "Neel Patel",
+      "phone": "9825866927",
+      "email": "info@hitech.com"
+  },
+  "name": "Hitech Healthcare Laboratory and Research Centre",
+  "email": "info@hitech.com",
+  "prefix": "HTL",
+  "gst": "24ABCDE1234F2Z5",
+  "logo": {
+      "__type": "File",
+      "name": "9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png",
+      "url": "http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"
+  },
+  "createdAt": "2020-08-26T15:40:04.698Z",
+  "updatedAt": "2020-08-26T15:40:04.698Z",
+  "objectId": "UPiSW6hpvi"
+}
 ```
 
-This endpoint retrieves all kittens.
+This cloud function returns organization information.
 
-### HTTP Request
+### Cloud Function
 
-`GET http://example.com/api/kittens`
+`getOrganization`
 
-### Query Parameters
+### Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+NOT REQUIRED
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
+## Create Organization
 
 ```javascript
-const kittn = require('kittn');
+import Parse from 'parse'
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+const res = await Parse.Cloud.run("createOrganization",
+  { <PARAMETERS> });
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "address": {
+      "line1": "201-202, Sahaj Arcade, Above Vimal Hospital",
+      "line2": "Opposite Lincoln Healthcare, Near Sola Gam, Science City Road",
+      "state": "Gujarat",
+      "city": "Ahmedabad",
+      "zip": "380060"
+  },
+  "bank": {
+      "name": "Kotak",
+      "acc_name": "Hitech",
+      "acc_number": "1234567890",
+      "branch": "Maninagar",
+      "ifsc": "KKBK00091"
+  },
+  "contact": {
+      "name": "Neel Patel",
+      "phone": "9825866927",
+      "email": "info@hitech.com"
+  },
+  "name": "Hitech Healthcare Laboratory and Research Centre",
+  "email": "info@hitech.com",
+  "prefix": "HTL",
+  "gst": "24ABCDE1234F2Z5",
+  "logo": {
+      "__type": "File",
+      "name": "9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png",
+      "url": "http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"
+  },
+  "createdAt": "2020-08-26T15:40:04.698Z",
+  "updatedAt": "2020-08-26T15:40:04.698Z",
+  "objectId": "UPiSW6hpvi"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This cloud function creates a new organisation.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Ideally should be using when `getOrganizationStatus` cloud functions returns status `1`
 
-### HTTP Request
+### Cloud Function
 
-`GET http://example.com/kittens/<ID>`
+`createOrganization`
 
-### URL Parameters
+### Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Parameter | Required | Type | Description
+--------- | ---------|------|-------------
+name | * | string  | Name of the organization.
+email | * | string  | Email of the organization.
+prefix | * | string | Prefix of the organization.
+address | * | object - Address | Full address of the organization.
+bank | | bank - Bank | Bank details of the organization.
+gst | * | string | GST number of the organization.
+contact | * | Object - Contact | Contact details of the organization.
+logo | * | Parse File | Organization Logo.
