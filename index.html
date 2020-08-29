@@ -279,8 +279,8 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-8d7a23ba.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-2c600fbb.css" rel="stylesheet" media="print" />
+    <link href="stylesheets/screen-d9a9697b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-86f102b3.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-e9bde216.js"></script>
 
     <script>
@@ -296,7 +296,7 @@
     </a>
     <div class="toc-wrapper">
       <div class="image-logo">
-        <img src="images/dracula-01d94330.svg" class="logo" alt="" />
+        <img src="images/exactt-a269fdb7.png" class="logo" alt="" />
       </div>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
@@ -331,6 +331,23 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-issues" class="toc-h2 toc-link" data-title="API Issues">API Issues</a>
+                  </li>
+                  <li>
+                    <a href="#user-related-errors" class="toc-h2 toc-link" data-title="User related errors">User related errors</a>
+                  </li>
+                  <li>
+                    <a href="#client-only-errors" class="toc-h2 toc-link" data-title="Client-only errors">Client-only errors</a>
+                  </li>
+                  <li>
+                    <a href="#operational-issues" class="toc-h2 toc-link" data-title="Operational issues">Operational issues</a>
+                  </li>
+                  <li>
+                    <a href="#other-issues" class="toc-h2 toc-link" data-title="Other issues">Other issues</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -521,61 +538,342 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The following is a list of all the error codes that can be returned by the Parse API. You may also refer to RFC2616 for a list of http error codes. Make sure to check the error message for more details.</p>
+<h2 id='api-issues'>API Issues</h2>
+<p>Following are the API related error codes.</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
 <th>Meaning</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>101</td>
+<td>UserInvalidLoginParams</td>
+<td>Invalid login parameters. Check error message for more details.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>101</td>
+<td>ObjectNotFound</td>
+<td>The specified object or session doesn’t exist or could not be found. Can also indicate that you do not have the necessary permissions to read or write this object. Check error message for more details.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>102</td>
+<td>InvalidQuery</td>
+<td>There is a problem with the parameters used to construct this query. This could be an invalid field name or an invalid field type for a specific constraint. Check error message for more details..</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>103</td>
+<td>InvalidClassName</td>
+<td>Missing or invalid classname. Classnames are case-sensitive. They must start with a letter, and a-zA-Z0-9_ are the only valid characters.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>104</td>
+<td>MissingObjectId</td>
+<td>An unspecified object id.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>105</td>
+<td>InvalidFieldName</td>
+<td>An invalid field name. Keys are case-sensitive. They must start with a letter, and a-zA-Z0-9_ are the only valid characters. Some field names may be reserved. Check error message for more details.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>106</td>
+<td>InvalidPointer</td>
+<td>A malformed pointer was used. You would typically only see this if you have modified a client SDK.</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>107</td>
+<td>InvalidJSON</td>
+<td>Badly formed JSON was received upstream. This either indicates you have done something unusual with modifying how things encode to JSON, or the network is failing badly. Can also indicate an invalid utf-8 string or use of multiple form encoded values. Check error message for more details.</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>108</td>
+<td>CommandUnavailable</td>
+<td>The feature you tried to access is only available internally for testing purposes.</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>116</td>
+<td>ObjectTooLarge</td>
+<td>The object is too large.</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>116</td>
+<td>ExceededConfigParamsError</td>
+<td>You have reached the limit of 100 config parameters.</td>
+</tr>
+<tr>
+<td>117</td>
+<td>InvalidLimitError</td>
+<td>An invalid value was set for the limit. Check error message for more details.</td>
+</tr>
+<tr>
+<td>118</td>
+<td>InvalidSkipError</td>
+<td>An invalid value was set for skip. Check error message for more details.</td>
+</tr>
+<tr>
+<td>119</td>
+<td>OperationForbidden</td>
+<td>The operation isn’t allowed for clients due to class-level permissions. Check error message for more details.</td>
+</tr>
+<tr>
+<td>120</td>
+<td>CacheMiss</td>
+<td>The result was not found in the cache.</td>
+</tr>
+<tr>
+<td>121</td>
+<td>InvalidNestedKey</td>
+<td>An invalid key was used in a nested JSONObject. Check error message for more details.</td>
+</tr>
+<tr>
+<td>123</td>
+<td>InvalidACL</td>
+<td>An invalid ACL was provided.</td>
+</tr>
+<tr>
+<td>125</td>
+<td>InvalidEmailAddress</td>
+<td>The email address was invalid.</td>
+</tr>
+<tr>
+<td>137</td>
+<td>DuplicateValue</td>
+<td>Unique field was given a value that is already taken.</td>
+</tr>
+<tr>
+<td>139</td>
+<td>InvalidRoleName</td>
+<td>Role’s name is invalid.</td>
+</tr>
+<tr>
+<td>139</td>
+<td>ReservedValue</td>
+<td>Field value is reserved.</td>
+</tr>
+<tr>
+<td>140</td>
+<td>ExceededCollectionQuota</td>
+<td>You have reached the quota on the number of classes in your app. Please delete some classes if you need to add a new class.</td>
+</tr>
+<tr>
+<td>141</td>
+<td>ScriptFailed</td>
+<td>Cloud Code script failed. Usually points to a JavaScript error. Check error message for more details.</td>
+</tr>
+<tr>
+<td>141</td>
+<td>FunctionNotFound</td>
+<td>Cloud function not found. Check that the specified Cloud function is present in your Cloud Code script and has been deployed.</td>
+</tr>
+<tr>
+<td>141</td>
+<td>JobNotFound</td>
+<td>Background job not found. Check that the specified job is present in your Cloud Code script and has been deployed.</td>
+</tr>
+<tr>
+<td>141</td>
+<td>SuccessErrorNotCalled</td>
+<td>success/error was not called. A cloud function will return once response.success() or response.error() is called. A background job will similarly finish execution once status.success() or status.error() is called. If a function or job never reaches either of the success/error methods, this error will be returned. This may happen when a function does not handle an error response correctly, preventing code execution from reaching the success() method call.</td>
+</tr>
+<tr>
+<td>141</td>
+<td>MultupleSuccessErrorCalls</td>
+<td>Can’t call success/error multiple times. A cloud function will return once response.success() or response.error() is called. A background job will similarly finish execution once status.success() or status.error() is called. If a function or job calls success() and/or error() more than once in a single execution path, this error will be returned.</td>
+</tr>
+<tr>
+<td>142</td>
+<td>ValidationFailed</td>
+<td>Cloud Code validation failed.</td>
+</tr>
+<tr>
+<td>143</td>
+<td>WebhookError</td>
+<td>Webhook error.</td>
+</tr>
+<tr>
+<td>150</td>
+<td>InvalidImageData</td>
+<td>Invalid image data.</td>
+</tr>
+<tr>
+<td>151</td>
+<td>UnsavedFileError</td>
+<td>An unsaved file.</td>
+</tr>
+<tr>
+<td>152</td>
+<td>InvalidPushTimeError</td>
+<td>An invalid push time was specified.</td>
+</tr>
+<tr>
+<td>158</td>
+<td>HostingError</td>
+<td>Hosting error.</td>
+</tr>
+<tr>
+<td>160</td>
+<td>InvalidEventName</td>
+<td>The provided analytics event name is invalid.</td>
+</tr>
+<tr>
+<td>255</td>
+<td>ClassNotEmpty</td>
+<td>Class is not empty and cannot be dropped.</td>
+</tr>
+<tr>
+<td>256</td>
+<td>AppNameInvalid</td>
+<td>App name is invalid.</td>
+</tr>
+<tr>
+<td>902</td>
+<td>MissingAPIKeyError</td>
+<td>The request is missing an API key.</td>
+</tr>
+<tr>
+<td>903</td>
+<td>InvalidAPIKeyError</td>
+<td>The request is using an invalid API key.</td>
+</tr>
+</tbody></table>
+<h2 id='user-related-errors'>User related errors</h2>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>UsernameMissing</td>
+<td>The username is missing or empty.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>PasswordMissing</td>
+<td>The password is missing or empty.</td>
+</tr>
+<tr>
+<td>202</td>
+<td>UsernameTaken</td>
+<td>The username has already been taken.</td>
+</tr>
+<tr>
+<td>203</td>
+<td>UserEmailTaken</td>
+<td>Email has already been used.</td>
+</tr>
+<tr>
+<td>204</td>
+<td>UserEmailMissing</td>
+<td>The email is missing, and must be specified.</td>
+</tr>
+<tr>
+<td>205</td>
+<td>UserWithEmailNotFound</td>
+<td>A user with the specified email was not found.</td>
+</tr>
+<tr>
+<td>206</td>
+<td>SessionMissing</td>
+<td>A user object without a valid session could not be altered.</td>
+</tr>
+<tr>
+<td>207</td>
+<td>MustCreateUserThroughSignup</td>
+<td>A user can only be created through signup.</td>
+</tr>
+<tr>
+<td>208</td>
+<td>AccountAlreadyLinked</td>
+<td>An account being linked is already linked to another user.</td>
+</tr>
+<tr>
+<td>209</td>
+<td>InvalidSessionToken</td>
+<td>The device’s session token is no longer valid. The application should ask the user to log in again.</td>
+</tr>
+</tbody></table>
+<h2 id='client-only-errors'>Client-only errors</h2>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>100</td>
+<td>ConnectionFailed</td>
+<td>The connection to the Parse servers failed.</td>
+</tr>
+<tr>
+<td>600</td>
+<td>AggregateError</td>
+<td>There were multiple errors. Aggregate errors have an “errors” property, which is an array of error objects with more detail about each error that occurred.</td>
+</tr>
+<tr>
+<td>601</td>
+<td>FileReadError</td>
+<td>Unable to read input for a Parse File on the client.</td>
+</tr>
+<tr>
+<td>602</td>
+<td>XDomainRequest</td>
+<td>A real error code is unavailable because we had to use an XDomainRequest object to allow CORS requests in Internet Explorer, which strips the body from HTTP responses that have a non-2XX status code.</td>
+</tr>
+</tbody></table>
+<h2 id='operational-issues'>Operational issues</h2>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>124</td>
+<td>RequestTimeout</td>
+<td>The request was slow and timed out. Typically this indicates that the request is too expensive to run. You may see this when a Cloud function did not finish before timing out, or when a Parse.Cloud.httpRequest connection times out.</td>
+</tr>
+<tr>
+<td>154</td>
+<td>InefficientQueryError</td>
+<td>An inefficient query was rejected by the server. Refer to the Performance Guide and slow query log.</td>
+</tr>
+</tbody></table>
+<h2 id='other-issues'>Other issues</h2>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-1</td>
+<td>OtherCause</td>
+<td>An unknown error or an error unrelated to Parse occurred.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>InternalServerError</td>
+<td>Internal server error. No information available.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ServiceUnavailable</td>
+<td>The service is currently unavailable.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ClientDisconnected</td>
+<td>Connection failure.</td>
 </tr>
 </tbody></table>
 
