@@ -22,7 +22,7 @@ Welcome to Exactt API! This is documentation about various cloud code fucntions 
 Document is authored by Freddy Thobhani <thobhani.freddy@gmail.com> and it it currently maintained by
 Freddy Thobhani and Neel Patel <hello@ineelpatel.com>. Feel free to contact Freddy or Neel if something is not clear or you see any mistake.
 
-For any cloud code function request create a [issue](https://github.com/fre-nee/exactt-backend/issues)
+For any new cloud code function request create a [issue](https://github.com/fre-nee/exactt-backend/issues)
 
 # Authentication
 
@@ -203,3 +203,253 @@ bank | | bank - Bank | Bank details of the organization.
 gst | * | string | GST number of the organization.
 contact | * | Object - Contact | Contact details of the organization.
 logo | * | Parse File | Organization Logo.
+
+
+# Role
+
+## Get Role Access Permissions
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("getRoleAccessPermission");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "admin": {
+    "role": {
+        "read": true,
+        "write": true
+    },
+    "user": {
+        "read": true,
+        "write": true
+    },
+    "customer": {
+        "read": true,
+        "write": true
+    },
+    "department": {
+        "read": true,
+        "write": true
+    },
+    ...
+  }
+};
+
+```
+
+### cloud function
+
+`getRoleAccessPermission`
+
+This cloud function returns the access permission for each role.  
+
+### Parameters
+
+NOT REQUIRED
+
+## Create Role
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("createRole",
+  { <PARAMETERS> });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "test": {
+    "role": {
+        "read": false,
+        "write": false
+    },
+    "user": {
+        "read": false,
+        "write": false
+    },
+    "customer": {
+        "read": false,
+        "write": false
+    },
+    "department": {
+        "read": false,
+        "write": false
+    },
+    ...
+  }
+};
+
+```
+
+### cloud function
+
+`createRole`
+
+This cloud function creates and returns new role.  
+
+### Parameters
+
+Parameter | Required | Type | Description
+--------- | ---------|------|-------------
+roleName | * | string  | Name of the role to be created.
+
+## Update Role
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("updateRole",
+  { <PARAMETERS> });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "test": {
+    "role": {
+        "read": false,
+        "write": false
+    },
+    "user": {
+        "read": false,
+        "write": false
+    },
+    "customer": {
+        "read": false,
+        "write": false
+    },
+    "department": {
+        "read": false,
+        "write": false
+    },
+    ...
+  }
+};
+
+```
+
+### cloud function
+
+`updateRole`
+
+This cloud function updates and returns updated role.  
+
+### Parameters
+
+Parameter | Required | Type | Description
+--------- | ---------|------|-------------
+name | * | string  | Name of the role to be updated.
+permission | * | Object - Permission | Access permission object.
+
+# Department
+
+## Get Departments
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("getDepartments")
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+      "name": "NSFW",
+      "createdAt": "2020-08-29T11:35:45.248Z",
+      "updatedAt": "2020-08-29T11:35:45.248Z",
+      "objectId": "dx3FBrIewC"
+  }
+];
+
+```
+
+### cloud function
+
+`getDepartments`
+
+This cloud function returns list of departments.  
+
+### Parameters
+
+NOT REQUIRED
+
+## Create Department
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("createDepartment",
+  { <PARAMETERS> })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+      "name": "NSFW",
+      "createdAt": "2020-08-29T11:35:45.248Z",
+      "updatedAt": "2020-08-29T11:35:45.248Z",
+      "objectId": "dx3FBrIewC"
+  }
+];
+
+```
+
+### cloud function
+
+`createDepartment`
+
+This cloud function creates and returns new department.  
+
+### Parameters
+
+Parameter | Required | Type | Description
+--------- | ---------|------|-------------
+name | * | string  | Name of the department to be created.
+
+## Update Department
+
+```javascript
+import Parse from 'parse'
+
+const res = await Parse.Cloud.run("updatedDepartment",
+  { <PARAMETERS> })
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+      "name": "NSFW",
+      "createdAt": "2020-08-29T11:35:45.248Z",
+      "updatedAt": "2020-08-29T11:35:45.248Z",
+      "objectId": "dx3FBrIewC"
+  }
+];
+
+```
+
+### cloud function
+
+`createDepartment`
+
+This cloud function updates name of department and returns updated department.  
+
+### Parameters
+
+Parameter | Required | Type | Description
+--------- | ---------|------|-------------
+objectId | * | string  | Unique objectId of the department to be created.
+name | * | string  | Name of the department to be updated.
