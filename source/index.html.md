@@ -68,11 +68,11 @@ This cloud function returns the status of organization.
 
 Status is a number which can be 0, 1 or 2. 
 
-0 -> There is no Admin User or Organization information. 
-
-1 -> There is a Admin user but no Organization information.
-
-2 -> There is a Admin user andOrganization information (Organization onboarding successful).
+Status | Description 
+--------- | ---------|------|-------------
+0 | There is no Admin User or Organization information.
+1 | There is a Admin user but no Organization information.
+2 | There is a Admin user andOrganization information (Organization onboarding successful).
 
 
 ### Parameters
