@@ -321,16 +321,16 @@
               </ul>
           </li>
           <li>
-            <a href="#organization" class="toc-h1 toc-link" data-title="Organization">Organization</a>
+            <a href="#department" class="toc-h1 toc-link" data-title="Department">Department</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-organization-status" class="toc-h2 toc-link" data-title="Get Organization Status">Get Organization Status</a>
+                    <a href="#get-departments" class="toc-h2 toc-link" data-title="Get Departments">Get Departments</a>
                   </li>
                   <li>
-                    <a href="#get-organization" class="toc-h2 toc-link" data-title="Get Organization">Get Organization</a>
+                    <a href="#create-department" class="toc-h2 toc-link" data-title="Create Department">Create Department</a>
                   </li>
                   <li>
-                    <a href="#create-organization" class="toc-h2 toc-link" data-title="Create Organization">Create Organization</a>
+                    <a href="#update-department" class="toc-h2 toc-link" data-title="Update Department">Update Department</a>
                   </li>
               </ul>
           </li>
@@ -352,16 +352,16 @@
               </ul>
           </li>
           <li>
-            <a href="#department" class="toc-h1 toc-link" data-title="Department">Department</a>
+            <a href="#organization" class="toc-h1 toc-link" data-title="Organization">Organization</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-departments" class="toc-h2 toc-link" data-title="Get Departments">Get Departments</a>
+                    <a href="#get-organization-status" class="toc-h2 toc-link" data-title="Get Organization Status">Get Organization Status</a>
                   </li>
                   <li>
-                    <a href="#create-department" class="toc-h2 toc-link" data-title="Create Department">Create Department</a>
+                    <a href="#get-organization" class="toc-h2 toc-link" data-title="Get Organization">Get Organization</a>
                   </li>
                   <li>
-                    <a href="#update-department" class="toc-h2 toc-link" data-title="Update Department">Update Department</a>
+                    <a href="#create-organization" class="toc-h2 toc-link" data-title="Create Organization">Create Organization</a>
                   </li>
               </ul>
           </li>
@@ -404,10 +404,10 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <blockquote>
 <p>To configure Parse on client side:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="nx">Parse</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="dl">"</span><span class="s2">YOUR_APP_ID</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">YOUR_JAVASCRIPT_KEY</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">Parse</span><span class="p">.</span><span class="nx">serverURL</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">http://YOUR_PARSE_SERVER:1337/api</span><span class="dl">'</span>
+<span class="nx">Parse</span><span class="p">.</span><span class="nx">serverURL</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">http://YOUR_PARSE_SERVER:1337/api</span><span class="dl">"</span><span class="p">;</span>
 </code></pre></div>
 <blockquote>
 <p>Make sure to replace <code>YOUR_APP_ID</code> with your APP key.</p>
@@ -484,7 +484,267 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <td>New user department objectId.</td>
 </tr>
 </tbody></table>
-<h1 id='organization'>Organization</h1><h2 id='get-organization-status'>Get Organization Status</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+<h1 id='department'>Department</h1><h2 id='get-departments'>Get Departments</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getDepartments</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function'>cloud function</h3>
+<p><code>getDepartments</code></p>
+
+<p>This cloud function returns list of departments.</p>
+<h3 id='parameters'>Parameters</h3>
+<p>NOT REQUIRED</p>
+<h2 id='create-department'>Create Department</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">createDepartment</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">})</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function-2'>cloud function</h3>
+<p><code>createDepartment</code></p>
+
+<p>This cloud function creates and returns new department.</p>
+<h3 id='parameters-2'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>*</td>
+<td>string</td>
+<td>Name of the department to be created.</td>
+</tr>
+</tbody></table>
+<h2 id='update-department'>Update Department</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">updatedDepartment</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">})</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function-3'>cloud function</h3>
+<p><code>createDepartment</code></p>
+
+<p>This cloud function updates name of department and returns updated department.</p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>objectId</td>
+<td>*</td>
+<td>string</td>
+<td>Unique objectId of the department to be created.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>*</td>
+<td>string</td>
+<td>Name of the department to be updated.</td>
+</tr>
+</tbody></table>
+<h1 id='role'>Role</h1><h2 id='get-role-access-permissions'>Get Role Access Permissions</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getRoleAccessPermission</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"admin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function'>cloud function</h3>
+<p><code>getRoleAccessPermission</code></p>
+
+<p>This cloud function returns the access permission for each role.</p>
+<h3 id='parameters'>Parameters</h3>
+<p>NOT REQUIRED</p>
+<h2 id='get-role-list'>Get Role List</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getAvailableRoles</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gGYz6fgKCC"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hod"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"185Cjy9yX7"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1r65a7ENKS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chemist"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0PJiOoCFeg"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Receptionist"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PGIEP5lnZK"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GwKC5JAhc4"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="err">;</span><span class="w">
+</span></code></pre></div><h3 id='cloud-function-2'>cloud function</h3>
+<p><code>getAvailableRoles</code></p>
+
+<p>This cloud function returns list of available roles.</p>
+<h3 id='parameters-2'>Parameters</h3>
+<p>NOT REQUIRED</p>
+<h2 id='create-role'>Create Role</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">createRole</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function-3'>cloud function</h3>
+<p><code>createRole</code></p>
+
+<p>This cloud function creates and returns new role.</p>
+<h3 id='parameters-3'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>roleName</td>
+<td>*</td>
+<td>string</td>
+<td>Name of the role to be created.</td>
+</tr>
+</tbody></table>
+<h2 id='update-role'>Update Role</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">updateRole</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="err">;</span><span class="w">
+
+</span></code></pre></div><h3 id='cloud-function-4'>cloud function</h3>
+<p><code>updateRole</code></p>
+
+<p>This cloud function updates and returns updated role.</p>
+<h3 id='parameters-4'>Parameters</h3><h1 id='organization'>Organization</h1><h2 id='get-organization-status'>Get Organization Status</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getOrganizationStatus</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div>
@@ -492,12 +752,12 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <p>The above command returns NUMBER as a status which can 0,1 or 2:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight plaintext"><code>1
-</code></pre></div><h3 id='cloud-function-2'>cloud function</h3>
+</code></pre></div><h3 id='cloud-function'>cloud function</h3>
 <p><code>getOrganizationStatus</code></p>
 
-<p>This cloud function returns the status of organization. </p>
+<p>This cloud function returns the status of organization.</p>
 
-<p>Status is a number which can be 0, 1 or 2. </p>
+<p>Status is a number which can be 0, 1 or 2.</p>
 
 <table><thead>
 <tr>
@@ -518,9 +778,9 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <td>There is a Admin user andOrganization information (Organization onboarding successful).</td>
 </tr>
 </tbody></table>
-<h3 id='parameters-2'>Parameters</h3>
+<h3 id='parameters'>Parameters</h3>
 <p>NOT REQUIRED</p>
-<h2 id='get-organization'>Get Organization</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
+<h2 id='get-organization'>Get Organization</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">parse</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getOrganizationStatus</span><span class="dl">"</span><span class="p">);</span>
 </code></pre></div>
@@ -529,32 +789,32 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201-202, Sahaj Arcade, Above Vimal Hospital"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opposite Lincoln Healthcare, Near Sola Gam, Science City Road"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gujarat"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ahmedabad"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380060"</span><span class="w">
+    </span><span class="nl">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201-202, Sahaj Arcade, Above Vimal Hospital"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opposite Lincoln Healthcare, Near Sola Gam, Science City Road"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gujarat"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ahmedabad"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380060"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kotak"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"acc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maninagar"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"ifsc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KKBK00091"</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kotak"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"acc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maninagar"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ifsc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KKBK00091"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neel Patel"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9825866927"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neel Patel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9825866927"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech Healthcare Laboratory and Research Centre"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"gst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24ABCDE1234F2Z5"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="w">
+    </span><span class="nl">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-26T15:40:04.698Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-26T15:40:04.698Z"</span><span class="p">,</span><span class="w">
@@ -562,9 +822,9 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This cloud function returns organization information.</p>
-<h3 id='cloud-function-3'>Cloud Function</h3>
+<h3 id='cloud-function-2'>Cloud Function</h3>
 <p><code>getOrganization</code></p>
-<h3 id='parameters-3'>Parameters</h3>
+<h3 id='parameters-2'>Parameters</h3>
 <p>NOT REQUIRED</p>
 <h2 id='create-organization'>Create Organization</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
 
@@ -576,32 +836,32 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201-202, Sahaj Arcade, Above Vimal Hospital"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opposite Lincoln Healthcare, Near Sola Gam, Science City Road"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gujarat"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ahmedabad"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380060"</span><span class="w">
+    </span><span class="nl">"line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201-202, Sahaj Arcade, Above Vimal Hospital"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Opposite Lincoln Healthcare, Near Sola Gam, Science City Road"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gujarat"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ahmedabad"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"380060"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"bank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kotak"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"acc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maninagar"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"ifsc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KKBK00091"</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kotak"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"acc_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"acc_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"branch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maninagar"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ifsc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KKBK00091"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neel Patel"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9825866927"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Neel Patel"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9825866927"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hitech Healthcare Laboratory and Research Centre"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info@hitech.com"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTL"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"gst"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24ABCDE1234F2Z5"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="w">
+    </span><span class="nl">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"File"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://exactt-dev.herokuapp.com/api/files/exactt-backend/9ea584fcfe5e72fc379d53af00158f6a_companyLogo.png"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-26T15:40:04.698Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-26T15:40:04.698Z"</span><span class="p">,</span><span class="w">
@@ -611,9 +871,9 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <p>This cloud function will create and return a new organisation.</p>
 
 <p>Ideally should be using when <code>getOrganizationStatus</code> cloud functions returns status <code>1</code></p>
-<h3 id='cloud-function-4'>Cloud Function</h3>
+<h3 id='cloud-function-3'>Cloud Function</h3>
 <p><code>createOrganization</code></p>
-<h3 id='parameters-4'>Parameters</h3>
+<h3 id='parameters-3'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -671,165 +931,7 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <td>Organization Logo.</td>
 </tr>
 </tbody></table>
-<h1 id='role'>Role</h1><h2 id='get-role-access-permissions'>Get Role Access Permissions</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
 
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getRoleAccessPermission</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"admin"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-5'>cloud function</h3>
-<p><code>getRoleAccessPermission</code></p>
-
-<p>This cloud function returns the access permission for each role.  </p>
-<h3 id='parameters-5'>Parameters</h3>
-<p>NOT REQUIRED</p>
-<h2 id='get-role-list'>Get Role List</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getAvailableRoles</span><span class="dl">"</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gGYz6fgKCC"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hod"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"185Cjy9yX7"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1r65a7ENKS"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chemist"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0PJiOoCFeg"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Receptionist"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PGIEP5lnZK"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GwKC5JAhc4"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="err">;</span><span class="w">
-</span></code></pre></div><h3 id='cloud-function-6'>cloud function</h3>
-<p><code>getAvailableRoles</code></p>
-
-<p>This cloud function returns list of available roles.</p>
-<h3 id='parameters-6'>Parameters</h3>
-<p>NOT REQUIRED</p>
-<h2 id='create-role'>Create Role</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">createRole</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-7'>cloud function</h3>
-<p><code>createRole</code></p>
-
-<p>This cloud function creates and returns new role.  </p>
-<h3 id='parameters-7'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>roleName</td>
-<td>*</td>
-<td>string</td>
-<td>Name of the role to be created.</td>
-</tr>
-</tbody></table>
-<h2 id='update-role'>Update Role</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">updateRole</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">});</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"test"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"read"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"write"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-8'>cloud function</h3>
-<p><code>updateRole</code></p>
-
-<p>This cloud function updates and returns updated role.  </p>
-<h3 id='parameters-8'>Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -849,108 +951,6 @@ Freddy Thobhani and Neel Patel <a href="mailto:hello@ineelpatel.com">hello@ineel
 <td>*</td>
 <td>Object - Permission</td>
 <td>Access permission object.</td>
-</tr>
-</tbody></table>
-<h1 id='department'>Department</h1><h2 id='get-departments'>Get Departments</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">getDepartments</span><span class="dl">"</span><span class="p">)</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-9'>cloud function</h3>
-<p><code>getDepartments</code></p>
-
-<p>This cloud function returns list of departments.  </p>
-<h3 id='parameters-9'>Parameters</h3>
-<p>NOT REQUIRED</p>
-<h2 id='create-department'>Create Department</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">createDepartment</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">})</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-10'>cloud function</h3>
-<p><code>createDepartment</code></p>
-
-<p>This cloud function creates and returns new department.  </p>
-<h3 id='parameters-10'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>*</td>
-<td>string</td>
-<td>Name of the department to be created.</td>
-</tr>
-</tbody></table>
-<h2 id='update-department'>Update Department</h2><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="k">import</span> <span class="nx">Parse</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">parse</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">Parse</span><span class="p">.</span><span class="nx">Cloud</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="dl">"</span><span class="s2">updatedDepartment</span><span class="dl">"</span><span class="p">,</span>
-  <span class="p">{</span> <span class="o">&lt;</span><span class="nx">PARAMETERS</span><span class="o">&gt;</span> <span class="p">})</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NSFW"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-29T11:35:45.248Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"objectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dx3FBrIewC"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="err">;</span><span class="w">
-
-</span></code></pre></div><h3 id='cloud-function-11'>cloud function</h3>
-<p><code>createDepartment</code></p>
-
-<p>This cloud function updates name of department and returns updated department.  </p>
-<h3 id='parameters-11'>Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>objectId</td>
-<td>*</td>
-<td>string</td>
-<td>Unique objectId of the department to be created.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>*</td>
-<td>string</td>
-<td>Name of the department to be updated.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
